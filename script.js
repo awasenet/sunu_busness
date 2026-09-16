@@ -288,4 +288,4 @@
 
   // Ces fonctions ne s'exécutent que si les éléments existent sur la page courante
   if (document.getElementById('product-grid')) renderGrid();
-  if (document.getElementById('cart-count')) renderCart();
+  if (document.getElementById('drawer-items')) renderCart();
