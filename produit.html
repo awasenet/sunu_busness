@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produits — SUNU STYLE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">SUNU<span>STYLE</span></a>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="produit.html" class="active">Produits</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()" aria-label="Panier">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"/>
+      <circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span id="cart-count">0</span>
+  </button>
+</header>
+
+<section class="catalog" id="catalogue" style="padding-top:50px;">
+  <div class="catalog-head">
+    <h2>La collection</h2>
+    <div class="filters">
+      <button class="active" data-filter="all">Tous</button>
+      <button data-filter="vetements">Vêtements</button>
+      <button data-filter="chaussures">Chaussures</button>
+      <button data-filter="sacs">Sacs</button>
+    </div>
+  </div>
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<footer>
+  <div>© 2026 Sunu Style — Rufisque, Sénégal</div>
+  <div>Commandes par WhatsApp • Livraison locale</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Votre panier</h2>
+    <button class="close-btn" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="drawer-items" id="drawer-items"></div>
+  <div class="drawer-footer">
+    <div class="total-row">
+      <span>Total</span>
+      <span id="cart-total">0 FCFA</span>
+    </div>
+    <input type="text" id="customer-name" class="customer-input" placeholder="Votre nom et prénom">
+    <input type="text" id="customer-address" class="customer-input" placeholder="Votre adresse">
+    <input type="text" id="customer-phone" class="customer-input" placeholder="Votre téléphone">
+    <button class="checkout-btn" id="checkout-btn" onclick="checkoutWhatsApp()" disabled>
+      Commander via WhatsApp
+    </button>
+    <p class="checkout-note">Vous serez redirigé vers WhatsApp avec le détail de votre commande pré-rempli.</p>
+  </div>
+</aside>
+
+<div class="receipt-overlay" id="receiptOverlay" onclick="closeReceipt()"></div>
+<div class="receipt-modal" id="receiptModal">
+  <button class="close-btn receipt-close" onclick="closeReceipt()">&times;</button>
+  <div class="receipt-body">
+    <div class="invoice-top">
+      <div class="invoice-title-block">
+        <div class="invoice-title">FACTURE</div>
+        <div class="invoice-meta-line">N° : <span id="receipt-order-number"></span></div>
+        <div class="invoice-meta-line">Date : <span id="receipt-date"></span></div>
+      </div>
+      <div class="invoice-brand">SUNU<span>STYLE</span></div>
+    </div>
+
+    <div class="invoice-divider"></div>
+
+    <div class="invoice-client">
+      <div class="invoice-client-title">Client</div>
+      <div class="invoice-client-row"><span class="label">Nom :</span> <span id="receipt-customer"></span></div>
+      <div class="invoice-client-row"><span class="label">Adresse :</span> <span id="receipt-address"></span></div>
+      <div class="invoice-client-row"><span class="label">Téléphone :</span> <span id="receipt-phone"></span></div>
+    </div>
+
+    <table class="invoice-table">
+      <thead>
+        <tr><th>Produit</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>
+      </thead>
+      <tbody id="receipt-items"></tbody>
+    </table>
+
+    <div class="invoice-total-row">
+      <span>Total :</span>
+      <span id="receipt-total">0 FCFA</span>
+    </div>
+
+    <div class="invoice-divider"></div>
+
+    <div class="invoice-footer-text">
+      <p>Merci pour votre achat !</p>
+      <p>Sunu Style — Service client : +221 77 241 67 84</p>
+    </div>
+  </div>
+  <div class="receipt-footer">
+    <button class="checkout-btn" onclick="sendReceiptWhatsApp()">Confirmer via WhatsApp</button>
+    <button class="print-btn" onclick="window.print()">Imprimer le reçu</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

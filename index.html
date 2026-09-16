@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUNU STYLE — Vêtements, Chaussures & Sacs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">SUNU<span>STYLE</span></a>
+  <nav>
+    <a href="index.html" class="active">Accueil</a>
+    <a href="produit.html">Produits</a>
+    <a href="apropos.html">À propos</a>
+  </nav>
+  <a href="produit.html" class="cart-btn" aria-label="Panier">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"/>
+      <circle cx="20" cy="21" r="1"/>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span id="cart-count">0</span>
+  </a>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>La mode d'ici,<br>portée par vous.</h1>
+    <p>Vêtements, chaussures et sacs sélectionnés pour durer. Commandez en quelques clics, on finalise ensemble sur WhatsApp.</p>
+    <a href="produit.html" class="cta">Voir la collection</a>
+  </div>
+  <div class="hero-image">
+    <img src="images/robe-jaune-fluo.jpeg" alt="Look de la collection">
+  </div>
+</section>
+
+<section class="promo-band">
+  <div class="promo-cell">
+    <span class="num">100%</span>
+    <p>Sélection pensée pour le climat et le style local</p>
+  </div>
+  <div class="promo-cell">
+    <span class="num">24h</span>
+    <p>Réponse rapide à toute commande envoyée via WhatsApp</p>
+  </div>
+  <div class="promo-cell">
+    <span class="num">0</span>
+    <p>Frais caché — le prix affiché est le prix payé</p>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="featured-head">
+    <h2>Sélection du moment</h2>
+    <a href="produit.html" class="see-all">Voir tous les produits →</a>
+  </div>
+  <div class="grid" id="featured-grid"></div>
+</section>
+
+<footer>
+  <div>© 2026 Sunu Style — Rufisque, Sénégal</div>
+  <div>Commandes par WhatsApp • Livraison locale</div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Affiche 4 produits en avant sur la page d'accueil (lecture seule, pas d'ajout au panier ici)
+  const featured = PRODUCTS.slice(0, 4);
+  const grid = document.getElementById('featured-grid');
+  grid.innerHTML = featured.map(p => `
+    <a href="produit.html" class="card" style="display:block;">
+      <div class="card-img">
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+        <img src="${p.images[0]}" alt="${p.name}">
+      </div>
+      <h3>${p.name}</h3>
+      <div class="cat">${catLabel(p.cat)}</div>
+      <div class="price-row"><span class="price">${fmt(p.price)}</span></div>
+    </a>
+  `).join("");
+</script>
+
+</body>
+</html>
